@@ -1,16 +1,5 @@
 import java.util.*;
 
-// Booking Request
-class BookingRequest {
-    String guestName;
-    String roomType;
-
-    public BookingRequest(String guestName, String roomType) {
-        this.guestName = guestName;
-        this.roomType = roomType;
-    }
-}
-
 // Thread-safe Inventory
 class RoomInventory {
     private Map<String, Integer> rooms = new HashMap<>();
@@ -85,6 +74,10 @@ class BookingProcessor extends Thread {
             BookingRequest request = queue.getRequest();
             inventory.allocateRoom(request.roomType, request.guestName);
         }
+    }
+
+    public void showRollbackStack() {
+        System.out.println("Rollback Stack (LIFO): " + rollbackStack);
     }
 }
 
